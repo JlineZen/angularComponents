@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../vendor/bootstrap.css" />
     <script src="../vendor/angular.min.js"></script>
     <title>tabs component</title>
 </head>
 
 <body ng-app="ui.tab">
     <div ng-controller="demoCtrl as vm">
-        <tabs tabs-list="vm.tabsList"></tabs>
+        <tabs tabs-list="vm.tabsList">
+        </tabs>
     </div>
     <script src="./app.js"></script>
 </body>
