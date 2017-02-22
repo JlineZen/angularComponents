@@ -1,0 +1,14 @@
+.typeahead-container {
+    width: 240px;
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.typeahead-container.show .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+}

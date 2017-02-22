@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular typeahead component</title>
+    <link rel="stylesheet" href="./typeahead.css">
+    <link rel="stylesheet" href="../../vendor/bootstrap.css">
+    <script type="text/javascript" src="../../vendor/angular.min.js"></script>
+    <script type="text/javascript" src="./typeahead.js"></script>
+</head>
+
+<body ng-app="com.app">
+    <type-ahead lists="['Angular', 'React', 'Vue', 'Avalon']"></type-ahead>
+    <script type="text/javascript">
+        var app = angular.module('com.app', ['ui.typeahead']);
+    </script>
+</body>
+
+</html>
