@@ -9,8 +9,17 @@
 </head>
 
 <body ng-app="ui.tab">
-    <div ng-controller="demoCtrl as vm">
-        <tabs tabs-list="vm.tabsList">
+    <div class="container">
+        <tabs>
+            <tab label="Angular">
+                <h1>Angular</h1>
+            </tab>
+            <tab label="Vue">
+                <h1>Vue</h1>
+            </tab>
+            <tab label="React">
+                <h1>React</h1>
+            </tab>
         </tabs>
     </div>
     <script src="./app.js"></script>
