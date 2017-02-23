@@ -1,54 +1,39 @@
 angular.module('ui.tab', [])
     .component('tabs', {
-        bindings: {
-            tabsList: '<',
-            selected: '@'
-        },
         transclude: true,
         controller: function() {
-            this.selectedTab = function(index) {
-                this.tabsList.forEach(function(tab) {
+            this.tabs = [];
+            this.selectTab = function(tab) {
+                angular.forEach(this.tabs, function(tab) {
                     tab.selected = false;
                 });
-                this.tabsList[index].selected = true;
+                tab.selected = true;
             };
-            this.selectedTab(this.selected || 0);
+            this.addTab = function(tab) {
+                if (this.tabs.length === 0) {
+                    this.selectTab(tab);
+                }
+                this.tabs.push(tab);
+            };
         },
-        template: '<div class="tab-container">' +
-            '<ul class="nav nav-tabs">' +
-            '<li ng-repeat="tab in $ctrl.tabsList">' +
-            '<a href="javascript:void(0);" ng-class="{\'active\': tab.selected}"' +
-            'ng-bind="tab.label" ng-click="$ctrl.selectedTab($index);"></a>' +
-            '</li>' +
-            '</ul>' +
-            '<div class="tab-content">' +
-            '<tab ng-repeat="tab in $ctrl.tabsList" tab="tab"></tab>' +
-            '</div>' +
-            '</div>'
+        templateUrl: 'tabs.html'
     })
     .component('tab', {
         bindings: {
-            tab: '<'
+            label: '@'
         },
         require: {
-            tabs: '^^'
+            tabsCtrl: '^tabs'
         },
+        transclude: true,
         controller: function() {
-
+            this.$onInit = function() {
+                this.tab = {
+                    label: this.label,
+                    selected: false
+                }
+                this.tabsCtrl.addTab(this.tab);
+            };
         },
-        template: '<div class="tab-pane" ng-if="$ctrl.tab.selected"><p ng-bind="$ctrl.tab.content"></p></div>'
-    })
-    .controller('demoCtrl', function() {
-        var vm = this;
-        vm.tabsList = [{
-                label: 'tab1',
-                content: 'tab1 content',
-                selected: false
-            },
-            {
-                label: 'tab2',
-                content: 'tab2 content',
-                selected: false
-            }
-        ];
+        templateUrl: 'tab.html'
     });
