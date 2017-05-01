@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基于angular的select控件</title>
+	<link rel="stylesheet" href="./angular-select.css">
+</head>
+<body ng-app="com.zzweb.app">
+	<div ng-controller="DemoController as vm">
+		<drop-down ng-model="vm.city" options="vm.options"></drop-down>
+	</div>
+	<script type="text/javascript" src="../vendor/angular.min.js"></script>
+	<script type="text/javascript" src="./angular-select.js"></script>
+	<script type="text/javascript">
+		angular
+			.module('com.zzweb.app', ['ngSelect'])
+			.controller('DemoController', function() {
+				var vm = this;
+				vm.city = "广州";
+				vm.options = ["北京", "上海", "广州", "深圳", "武汉", "长沙"];
+			});
+	</script>
+</body>
+</html>
