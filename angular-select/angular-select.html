@@ -8,6 +8,7 @@
 <body ng-app="com.zzweb.app">
 	<div ng-controller="DemoController as vm">
 		<drop-down ng-model="vm.city" options="vm.options"></drop-down>
+		<span ng-bind="vm.city"></span>
 	</div>
 	<script type="text/javascript" src="../vendor/angular.min.js"></script>
 	<script type="text/javascript" src="./angular-select.js"></script>
@@ -18,6 +19,10 @@
 				var vm = this;
 				vm.city = "广州";
 				vm.options = ["北京", "上海", "广州", "深圳", "武汉", "长沙"];
+				vm.handleChange = function(value) {
+					vm.city = value;
+					console.log(vm.city);
+				};
 			});
 	</script>
 </body>
