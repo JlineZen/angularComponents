@@ -21,11 +21,7 @@
             scope: {
                 options: '=',
                 ngModel: '=',
-                ngDisable: '=',
-                ngClick: '&',
-                ngBlur: '&',
-                ngChange: '&',
-                ngClass: '='
+                ngChange: '&'
             },
             link: function(scope, element, attrs) {
                 var input = element.find('input'),
@@ -44,6 +40,8 @@
                 	// 阻止冒泡
                     e.stopPropagation();
                     scope.ngModel = e.target.innerHTML;
+                    // 模拟select标签 ngChange
+                    scope.ngChange({value: scope.ngModel});
                     toggle(ul[0]);
                 };
 
@@ -54,10 +52,7 @@
             },
             template: '<div class="ng-select">' + 
 	            '<input class="ng-model" type="text" ng-model="ngModel"' + 
-	            'ng-disable="ngDisable"' + 
-	            'ng-click="ngClick"' + 
-	            'ng-change="ngChange"' + 
-	            'ng-blur="ngBlur" ng-class="ngClass" readonly />' + 
+	            'readonly />' + 
 	            '<ul class="ng-options">' + 
 	            	'<li ng-click="optionFn($event);" class="ng-option"' 
 	            	+ 'ng-repeat="option in options" ng-bind="option">' + 
